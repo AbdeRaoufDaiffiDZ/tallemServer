@@ -2,13 +2,12 @@ const express = require("express");
 const notifiRouter = express.Router();
 const Notifi = require("../models/notification");
 const admin = require("firebase-admin");
-const serviceAccount = require("./dawini-cec17-firebase-adminsdk-rxmpe-e2c76000a0.json");
+const serviceAccount = require("./taalim-82517-firebase-adminsdk-ndvpt-0f2840372f.json");
 const User = require("../models/user");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://dawini-cec17-default-rtdb.europe-west1.firebasedatabase.app",
-});
+  databaseURL: "https://taalim-82517-default-rtdb.firebaseio.com"});
 
 async function getFCMTokens() {
   try {
