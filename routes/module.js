@@ -4,12 +4,12 @@ const Subject = require("../models/module");
 
 moduleRouter.post("/add_course", async (req, res) => {
   try {
-    const { year, name, speciality, courseName, link } = req.body;
+    const { year, name, speciality, courseName, link, title } = req.body;
     if (!year || !name || !speciality || !courseName || !link) {
       return res.status(400).json({ msg: "جميع الحقول مطلوبة" });
     }
     let existModule = await Subject.findOne({ name, speciality, year });
-    const course = { name: courseName, link };
+    const course = { name: courseName, link, title };
 
     if (existModule) {
       existModule.courses.push(course);
@@ -28,12 +28,12 @@ moduleRouter.post("/add_course", async (req, res) => {
 
 moduleRouter.post("/add_exame", async (req, res) => {
   try {
-    const { year, name, speciality, exameName, link, solutionLink } = req.body;
+    const { year, name, speciality, exameName, link, solutionLink, title } = req.body;
     if (!year || !name || !speciality || !exameName || !link) {
       return res.status(400).json({ msg: "جميع الحقول مطلوبة" });
     }
-    let existModule = await Subject.findOne({ name, speciality, year });
-    const exame = { name: exameName, link, solutionLink };
+    let existModule = await Subject.findOne({ name, speciality, year, title });
+    const exame = { name: exameName, link, solutionLink, title };
 
     if (existModule) {
       existModule.exames.push(exame);
