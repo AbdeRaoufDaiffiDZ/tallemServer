@@ -2,13 +2,13 @@ const express = require("express");
 const notifiRouter = express.Router();
 const Notifi = require("../models/notification");
 const admin = require("firebase-admin");
-const serviceAccount = require("./taalim-82517-firebase-adminsdk-ndvpt-0f2840372f.json");
+const serviceAccount = require("../routes/taalim-82517-firebase-adminsdk-ndvpt-4aaf222e20.json");
 const User = require("../models/user");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://taalim-82517-default-rtdb.firebaseio.com"});
-
+  databaseURL: "https://taalim-82517-default-rtdb.firebaseio.com"
+});
 async function getFCMTokens() {
   try {
     const users = await User.find({});
