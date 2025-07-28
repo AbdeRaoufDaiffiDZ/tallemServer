@@ -9,7 +9,7 @@ moduleRouter.post("/add_course", async (req, res) => {
       return res.status(400).json({ msg: "جميع الحقول مطلوبة" });
     }
     let existModule = await Subject.findOne({ name, speciality, year });
-    const course = { name: courseName, link, title };
+    const course = { name: courseName, link, title: title };
 
     if (existModule) {
       existModule.courses.push(course);
@@ -19,6 +19,7 @@ moduleRouter.post("/add_course", async (req, res) => {
 
     const subject = new Subject({ year, name, speciality, courses: [course], exames: [] });
     await subject.save();
+    console.log("New subject created and course added");
     res.status(200).json(subject);
   } catch (error) {
     console.error("Add course error:", error.message);

@@ -8,7 +8,7 @@ const exame = new mongoose.Schema({
     },
     title: {
         type: String,
-        required: true
+        required: false
     },
     link: {
         type:String,
